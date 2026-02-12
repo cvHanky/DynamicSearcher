@@ -21,7 +21,7 @@ namespace HierarchicGraph.Database
                 .HasOne(g => g.Parent)
                 .WithMany(g => g.Children)
                 .HasForeignKey(g => g.ParentId)
-                .OnDelete(DeleteBehavior.Restrict); // prevents cascade loops
+                .OnDelete(DeleteBehavior.Restrict); // Prevents deletion of entire heritage when deleting a grandchild for example.
         }
     }
 }

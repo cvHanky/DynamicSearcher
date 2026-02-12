@@ -1,0 +1,32 @@
+﻿@page "/Items"
+@inject GraphItemRepository ItemRepo
+@rendermode InteractiveServer
+
+<PageTitle>Item Overview</PageTitle>
+
+@if (isLoading)
+{
+}
+else
+{
+    <div class="flex flex-row h-1/2 w-full items-center justify-center bg-gray-200 border shadow-lg p-20 gap-10">
+        @foreach (var item in items)
+        {
+            <div class="flex flex-col p-2 m-2 max-h-40 max-w-40 border border-slate-800 rounded bg-gray-300 shadow-sm hover:bg-gray-500 hover:shadow-lg hover:cursor-pointer">
+                <span>@item.Name</span>
+                <span>@(item.ParentId != null ? item.ParentId : "No parent") </span>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<GraphItem> items { get; set; } = new List<GraphItem>();
+    private bool isLoading { get; set; } = true;
+
+    protected override void OnInitialized()
+    {
+        items = ItemRepo.GetAll();
+        isLoading = false;
+    }
+}

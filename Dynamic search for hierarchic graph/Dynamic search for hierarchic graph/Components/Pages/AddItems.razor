@@ -1,0 +1,18 @@
+﻿@page "/AddItems"
+@inject GraphItemRepository ItemRepo
+
+<PageTitle>Add Items</PageTitle>
+
+@* 
+    Add a form where you can input a name and pick a parent from the full list of items.
+    Picking the parent should probably be some sort of search bar?
+*@
+
+@code {
+    private List<GraphItem> allItems { get; set; } = new List<GraphItem>();
+
+    protected override void OnInitialized()
+    {
+        allItems = ItemRepo.GetAll();
+    }
+}
