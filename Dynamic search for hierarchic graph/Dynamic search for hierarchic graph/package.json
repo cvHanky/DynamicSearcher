@@ -1,0 +1,13 @@
+{
+  "main": "index.js",
+  "scripts": {
+    "watch": "npx @tailwindcss/cli -i ./wwwroot/app.css -o ./wwwroot/main.css --watch",
+    "dev": "concurrently \"npm run watch\" \"dotnet watch run\""
+  },
+  "dependencies": {
+    "concurrently": "^9.2.1",
+    "tailwindcss": "^4.1.18",
+    "@tailwindcss/cli": "^4.1.13",
+    "@tailwindcss/postcss": "4.1.13"
+  }
+}

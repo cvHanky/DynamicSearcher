@@ -1,0 +1,21 @@
+﻿@page "/"
+@inject GraphItemRepository ItemRepo
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<div class="w-max-1/2 h-max-40 border bg-red-200">
+    <span>hi, this is some text inside a div.</span>
+</div>
+
+@code
+{
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("attempting to save new entity.");
+        ItemRepo.AddItem(new GraphItem { Name = "AnotherTestName" });
+    }
+}
