@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject GraphItemRepository ItemRepo
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
@@ -7,15 +8,21 @@
 
 Welcome to your new app.
 
-<div class="w-max-1/2 h-max-40 border bg-red-200">
-    <span>hi, this is some text inside a div.</span>
+<div class="flex flex-row h-1/2 w-full items-center justify-center bg-gray-200 border shadow-lg p-20 gap-10">
+    @foreach (var item in items)
+    {
+        <div class="p-2 m-2 max-h-40 max-w-40 border border-slate-800 rounded bg-gray-300 shadow-sm hover:bg-gray-500 hover:shadow-lg hover:cursor-pointer">
+            <span>@item.Name</span>
+        </div>
+    }
 </div>
 
 @code
 {
+    private List<GraphItem> items { get; set; } = new List<GraphItem>();
+
     protected override void OnInitialized()
     {
-        Console.WriteLine("attempting to save new entity.");
-        ItemRepo.AddItem(new GraphItem { Name = "AnotherTestName" });
+        items = ItemRepo.GetAll();
     }
 }

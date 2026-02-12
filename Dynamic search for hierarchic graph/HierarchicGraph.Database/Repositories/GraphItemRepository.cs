@@ -21,6 +21,11 @@ public class GraphItemRepository
         return await context.Items.FindAsync(id);
     }
 
+    public List<GraphItem> GetAll()
+    {
+        return context.Items.ToList();
+    }
+
     public bool AddItem(GraphItem item)
     {
         if (item is not null)
