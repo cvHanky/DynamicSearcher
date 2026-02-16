@@ -1,7 +1,49 @@
 ﻿@page "/AddItems"
 @inject GraphItemRepository ItemRepo
+@inject NavigationManager navManager
+@rendermode InteractiveServer
 
 <PageTitle>Add Items</PageTitle>
+
+@if (isLoading)
+{
+
+}
+
+else
+{
+    <div class="flex flex-col items-center justify-center bg-blue-200 gap-5 p-5">
+        <h1 class="text-xl font-semibold">Add new item</h1>
+        <div class="flex flex-row">
+            <label class="mx-5" for="inputname">Name</label>
+            <InputText id="inputname" class="border shadow-sm px-1" @bind-Value="newItem.Name"/>
+        </div>
+        <div>
+            <label class="mx-5" for="inputparent">Select parent</label>
+            <InputSelect class="border shadow-sm px-1" @bind-Value="newItem.ParentId" id="inputparent">
+                <option value="">
+                    No parent
+                </option>
+                @foreach(var item in allItems)
+                {
+                    <option value="@item.Id">
+                        @item.Name
+                    </option>
+                }
+            </InputSelect>
+        </div>
+        <button class="border border-slate-800 bg-gray-200 rounded-lg p-2 shadow-sm hover:cursor-pointer hover:bg-gray-400" type="button" @onclick="SaveItem">
+            Save item
+        </button>
+    </div>
+
+    <div class="flex justify-center">
+        <div class="flex flex-col items-center justify-center bg-gray-300 border m-5 p-5 w-40 h-20">
+            <span>@newItem.Name</span>
+            <span>@(newItem.ParentId != null ? newItem.ParentId : "null")</span>
+        </div>
+    </div>
+}
 
 @* 
     Add a form where you can input a name and pick a parent from the full list of items.
@@ -10,9 +52,24 @@
 
 @code {
     private List<GraphItem> allItems { get; set; } = new List<GraphItem>();
+    private GraphItem newItem { get; set; }
+
+    private bool isLoading { get; set; } = true;
 
     protected override void OnInitialized()
     {
         allItems = ItemRepo.GetAll();
+        newItem = new GraphItem { Name = string.Empty };
+
+        isLoading = false;
+    }
+
+    private void SaveItem()
+    {
+        if (newItem is not null)
+        {
+            ItemRepo.AddItem(newItem);
+        }
+        navManager.NavigateTo("/Items");
     }
 }

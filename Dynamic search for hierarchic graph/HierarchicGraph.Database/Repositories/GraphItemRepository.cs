@@ -28,7 +28,7 @@ public class GraphItemRepository
 
     public bool AddItem(GraphItem item)
     {
-        if (item is not null)
+        if (item is not null && item.Id == default && string.IsNullOrEmpty(item.Name) is not true)    // The id should not be set by the user.
         {
             context.Items.AddAsync(item);
             context.SaveChanges();
