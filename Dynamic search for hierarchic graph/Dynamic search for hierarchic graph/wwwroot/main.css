@@ -7,9 +7,18 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-100: oklch(93.6% 0.032 17.717);
+    --color-red-200: oklch(88.5% 0.062 18.334);
+    --color-red-900: oklch(39.6% 0.141 25.723);
+    --color-green-300: oklch(87.1% 0.15 154.449);
+    --color-green-500: oklch(72.3% 0.219 149.579);
+    --color-green-700: oklch(52.7% 0.154 150.069);
+    --color-green-800: oklch(44.8% 0.119 151.328);
+    --color-blue-50: oklch(97% 0.014 254.604);
     --color-blue-100: oklch(93.2% 0.032 255.585);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-300: oklch(80.9% 0.105 251.813);
+    --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-slate-200: oklch(92.9% 0.013 255.508);
     --color-slate-500: oklch(55.4% 0.046 257.417);
     --color-slate-800: oklch(27.9% 0.041 260.031);
@@ -18,9 +27,8 @@
     --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-600: oklch(44.6% 0.03 256.802);
+    --color-gray-800: oklch(27.8% 0.033 256.848);
     --spacing: 0.25rem;
-    --text-lg: 1.125rem;
-    --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
     --font-weight-semibold: 600;
@@ -243,8 +251,53 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-1 {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  .border-2 {
+    border-style: var(--tw-border-style);
+    border-width: 2px;
+  }
+  .border-5 {
+    border-style: var(--tw-border-style);
+    border-width: 5px;
+  }
+  .border-blue-50 {
+    border-color: var(--color-blue-50);
+  }
+  .border-blue-200 {
+    border-color: var(--color-blue-200);
+  }
+  .border-gray-300 {
+    border-color: var(--color-gray-300);
+  }
   .border-gray-500 {
     border-color: var(--color-gray-500);
+  }
+  .border-gray-800 {
+    border-color: var(--color-gray-800);
+  }
+  .border-green-300 {
+    border-color: var(--color-green-300);
+  }
+  .border-green-500 {
+    border-color: var(--color-green-500);
+  }
+  .border-green-700 {
+    border-color: var(--color-green-700);
+  }
+  .border-green-800 {
+    border-color: var(--color-green-800);
+  }
+  .border-red-100 {
+    border-color: var(--color-red-100);
+  }
+  .border-red-200 {
+    border-color: var(--color-red-200);
+  }
+  .border-red-900 {
+    border-color: var(--color-red-900);
   }
   .border-slate-800 {
     border-color: var(--color-slate-800);
@@ -255,14 +308,14 @@
   .bg-blue-200 {
     background-color: var(--color-blue-200);
   }
+  .bg-blue-300 {
+    background-color: var(--color-blue-300);
+  }
   .bg-gray-200 {
     background-color: var(--color-gray-200);
   }
   .bg-gray-300 {
     background-color: var(--color-gray-300);
-  }
-  .bg-gray-600 {
-    background-color: var(--color-gray-600);
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
@@ -282,6 +335,10 @@
   .text-xl {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
+  }
+  .font-bold {
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
   }
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
@@ -309,10 +366,10 @@
       }
     }
   }
-  .hover\:bg-gray-200 {
+  .hover\:bg-blue-400 {
     &:hover {
       @media (hover: hover) {
-        background-color: var(--color-gray-200);
+        background-color: var(--color-blue-400);
       }
     }
   }
@@ -327,20 +384,6 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-gray-500);
-      }
-    }
-  }
-  .hover\:bg-slate-200 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-slate-200);
-      }
-    }
-  }
-  .hover\:bg-slate-500 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-slate-500);
       }
     }
   }
