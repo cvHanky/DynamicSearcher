@@ -1,26 +1,71 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager navMan
 
-<div class="flex flex-col items-center justify-center mx-15 mt-2 bg-slate-100">
-    <div class="flex items-center justify-center w-full border border-3 border-slate-300 gap-10 h-40">
-        <NavLink class="@GetInactiveClass()" href="/Items"
-                 ActiveClass="@GetActiveClass()">
-            Item overview
-        </NavLink>
-        <NavLink href="/AddItems"
-                 class="@GetInactiveClass()"
-                 ActiveClass="@GetActiveClass()">
-            Add new item
-        </NavLink>
-        <div class="@GetInactiveClass()">
-            Navigation bar
+<div class="table table-fixed w-full bg-slate-100">
+    <div class="table-row-group">
+        <div class="table-row">
+            <div class="table-cell border-b-3 border-slate-200" />
+            <div class="table-cell w-8/10 border-b-3 border-r-3 border-l-3 border-slate-200">
+                <div class="inline-grid grid-cols-2 gap-4">
+                    <div class="flex items-center justify-center font-semibold text-3xl">
+                        <span>Dynamic Tree Searcher</span>
+                    </div>
+                    <div class="flex flex-row items-center justify-center gap-7 h-30">
+                        <NavLink class="@GetInactiveClass()" href="/Items"
+                                 ActiveClass="@GetActiveClass()">
+                            Item overview
+                        </NavLink>
+                        <NavLink href="/AddItems"
+                                 class="@GetInactiveClass()"
+                                 ActiveClass="@GetActiveClass()">
+                            Add new item
+                        </NavLink>
+                        <div class="@GetInactiveClass()">
+                            Navigation bar
+                        </div>
+                        <div class="@GetInactiveClass()">
+                            Navigation bar
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-cell border-b-3 border-slate-200" />
         </div>
-        <div class="@GetInactiveClass()">
-            Navigation bar
+        <div class="table-row">
+            <div class="table-cell border-b-3 border-slate-200" />
+            <div class="table-cell border-b-3 border-r-3 border-l-3 border-slate-200">
+                @Body
+            </div>
+            <div class="table-cell border-b-3 border-slate-200" />
+        </div>
+        <div class="table-row">
+            <div class="table-cell border-b-3 border-slate-200" />
+            <div class="table-cell border-b-3 border-r-3 border-l-3 border-slate-200">
+                <div class="inline-grid grid-cols-2 gap-4">
+                    <div class="flex items-center justify-center font-semibold text-3xl">
+                        <span>Contact me</span>
+                    </div>
+                    <div class="flex flex-row items-center justify-center gap-7 h-30">
+                        <a class="@GetInactiveClass()" href="mailto:danielhoppe123@gmail.com">
+                            Email
+                        </a>
+                        <a href="https://github.com/cvHanky"
+                                 class="@GetInactiveClass()">
+                            GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/daniel-hoppe-hansen-1a152a222/"
+                            class="@GetInactiveClass()">
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="table-cell border-b-3 border-slate-200" />
         </div>
     </div>
-    @Body
 </div>
+
+
 
 @code {
     private string GetInactiveClass()
@@ -30,6 +75,6 @@
 
     private string GetActiveClass()
     {
-        return "bg-slate-300 rounded-lg shadow-lg hover:bg-slate-400";
+        return "bg-slate-200 rounded-lg shadow-sm";
     }
 }
