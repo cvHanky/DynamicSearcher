@@ -24,4 +24,8 @@
     <ProjectReference Include="..\HierarchicGraph.Model\HierarchicGraph.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Icons\" />
+  </ItemGroup>
+
 </Project>

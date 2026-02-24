@@ -37,4 +37,32 @@ public class GraphItemRepository
         }
         return true;
     }
+
+    public List<GraphItem> GetSortedItems()
+    {
+        List<GraphItem> sortedList = new List<GraphItem>();
+        List<GraphItem> fullList = GetAll().ToList();
+
+        var rootItems = fullList.Where(i => i.ParentId is null);
+        foreach (var rootItem in rootItems)
+        {
+            CollectDescendantsRecursively(rootItem, sortedList, fullList, 0);
+        }
+
+        return sortedList;
+    }
+
+    private void CollectDescendantsRecursively(GraphItem item, List<GraphItem> sortedList, List<GraphItem> fullList, int depth)
+    {
+        item.Depth = depth; // every time the recursion goes a layer deeper, depth is incremented by 1.
+        sortedList.Add(item);
+
+        if (fullList.Where(i => i.ParentId == item.Id).ToList() is List<GraphItem> children && children.Any()) // Figures out if the item has any children, and then also collects THEIR descendants.
+        {
+            foreach(var child in children)
+            {
+                CollectDescendantsRecursively(child, sortedList, fullList, depth+1);
+            }
+        }
+    }
 }

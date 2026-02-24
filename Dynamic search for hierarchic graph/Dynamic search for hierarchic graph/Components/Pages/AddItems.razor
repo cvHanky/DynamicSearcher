@@ -49,12 +49,19 @@ else
     private List<GraphItem> allItems { get; set; } = new List<GraphItem>();
     private GraphItem newItem { get; set; }
 
+    [SupplyParameterFromQuery(Name = "Id")]
+    public int ParentId { get; set; }
+
     private bool isLoading { get; set; } = true;
 
     protected override void OnInitialized()
     {
         allItems = ItemRepo.GetAll();
-        newItem = new GraphItem { Name = string.Empty };
+        newItem = new GraphItem { Name = string.Empty};
+        if (ParentId is not 0)
+        {
+            newItem.ParentId = ParentId;
+        }
 
         isLoading = false;
     }

@@ -1,0 +1,71 @@
+﻿<div class="relative flex flex-row w-7/10 p-2 gap-3 rounded-lg items-center hover:bg-slate-200 hover:cursor-pointer transition-all duration-300"
+     onmouseover="@Focus"
+     onmouseout="@UnFocus"
+     onclick="@Toggle"
+     style="@SimulateDepth()"
+>
+    <div id="arrow" class="transition-all duration-200 @(!isToggled ? "rotate-0" : "rotate-180 translate-x-1")">
+        <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="-mr-1 size-5 text-slate-500">
+            <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+        </svg>
+    </div>
+    <div id="itemname" class="text-lg">@GraphItem.Name</div>
+    <div class="absolute right-2">
+        <a id="addchild" 
+            class="transition-all duration-300 border border-slate-600 rounded-lg p-1 bg-green-700 text-white hover:bg-green-800 
+            @(isFocused ? "opacity-100" : "opacity-0")"
+            href="/AddItems?Id=@GraphItem.Id"
+        >+ Add child</a>
+    </div>
+</div>
+
+@code {
+    [EditorRequired, Parameter]
+    public GraphItem GraphItem { get; set; }
+
+    [EditorRequired, Parameter]
+    public HashSet<int> VisibilityList { get; set; }
+
+    [EditorRequired, Parameter]
+    public EventCallback<int> ToggleVisibility { get; set; }
+
+    private bool isFocused { get; set; } = false;
+    private bool isToggled => VisibilityList.Contains(GraphItem.Id) ? true : false;
+
+    private void Focus()
+    {
+        isFocused = true;
+    }
+
+    private void UnFocus()
+    {
+        isFocused = false;
+    }
+
+    private void Toggle()
+    {
+        ToggleVisibility.InvokeAsync(GraphItem.Id);
+    }
+
+    private bool IsVisible()
+    {
+        bool result = false;
+
+        if (GraphItem.ParentId is null)
+        {
+            result = true;
+        }
+
+        if (GraphItem.ParentId is int parentId && VisibilityList.Contains(parentId))
+        {
+            result = true;
+        }
+
+        return result;
+    }
+
+    private string SimulateDepth()
+    {
+        return $"margin-left: {GraphItem.Depth*40}px; transform: scaleY({(IsVisible() ? 1 : 0)});";
+    }
+}

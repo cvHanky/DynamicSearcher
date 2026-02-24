@@ -1,4 +1,6 @@
-﻿namespace HierarchicGraph.Model;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HierarchicGraph.Model;
 
 public class GraphItem
 {
@@ -11,4 +13,7 @@ public class GraphItem
     public GraphItem? Parent { get; set; }
 
     public ICollection<GraphItem> Children { get; set; } = new List<GraphItem>();
+
+    [NotMapped]
+    public int Depth { get; set; }
 }
