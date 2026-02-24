@@ -1,24 +1,35 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager navMan
 
-<div class="flex items-center justify-center border border-red-900 border-5 gap-10 bg-blue-100 h-40 shadow-lg">
-    <NavLink class="p-3 border border-gray-500 rounded-lg shadow-sm bg-blue-200 font-semibold hover:bg-blue-300 hover:cursor-pointer" href="/Items"
-             ActiveClass="border-gray-800 bg-blue-300 shadow-lg hover:bg-blue-400">
-        Item overview
-    </NavLink>
-    <NavLink href="/AddItems"
-             class="p-3 border border-gray-500 rounded-lg shadow-sm bg-blue-200 font-semibold hover:bg-blue-300 hover:cursor-pointer"
-             ActiveClass="border-gray-800 bg-blue-300 shadow-lg hover:bg-blue-400">
-        Add new item
-    </NavLink>
-    <div class="p-3 border border-gray-500 rounded-lg shadow-sm bg-blue-200 font-semibold hover:bg-blue-300 hover:cursor-pointer">
-        Navigation bar
+<div class="flex flex-col items-center justify-center mx-15 mt-2 bg-slate-100">
+    <div class="flex items-center justify-center w-full border border-3 border-slate-300 gap-10 h-40">
+        <NavLink class="@GetInactiveClass()" href="/Items"
+                 ActiveClass="@GetActiveClass()">
+            Item overview
+        </NavLink>
+        <NavLink href="/AddItems"
+                 class="@GetInactiveClass()"
+                 ActiveClass="@GetActiveClass()">
+            Add new item
+        </NavLink>
+        <div class="@GetInactiveClass()">
+            Navigation bar
+        </div>
+        <div class="@GetInactiveClass()">
+            Navigation bar
+        </div>
     </div>
-    <div class="p-3 border border-gray-500 rounded-lg shadow-sm bg-blue-200 font-semibold hover:bg-blue-300 hover:cursor-pointer">
-        Navigation bar
-    </div>
+    @Body
 </div>
-@Body
 
 @code {
+    private string GetInactiveClass()
+    {
+        return "p-3 font-semibold transition-all duration-500 ease-in-out hover:cursor-pointer hover:bg-slate-300 hover:rounded-lg hover:shadow-sm";
+    }
+
+    private string GetActiveClass()
+    {
+        return "bg-slate-300 rounded-lg shadow-lg hover:bg-slate-400";
+    }
 }
