@@ -37,6 +37,12 @@ else
         if (VisibilityList.Contains(id))
         {
             VisibilityList.Remove(id);
+
+            var list = ItemRepo.GetAllDescendants(id); // This ensures that when an item is collapsed, all of its children are also collapsed.
+            foreach(int childId in list)
+            {
+                VisibilityList.Remove(childId);
+            }
         }
         else
         {

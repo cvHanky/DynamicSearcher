@@ -1,4 +1,4 @@
-﻿<div class="relative flex flex-row gap-3 w-7/10 h-10 rounded-lg items-center hover:bg-slate-200 hover:cursor-pointer transition-all duration-400 ease-in-out @Visibility()"
+﻿<div class="relative flex flex-row gap-3 w-7/10 min-h-0 h-10 border border-slate-200 rounded-lg items-center hover:bg-slate-200 hover:cursor-pointer transition-all duration-400 ease-in-out @Visibility()"
      onmouseover="@Focus"
      onmouseout="@UnFocus"
      onclick="@Toggle"
@@ -66,7 +66,7 @@
 
     private string Visibility()
     {
-        return IsVisible() ? "max-h-40 opacity-100" : "max-h-0 opacity-0 overflow-hidden pointer-events-none";
+        return IsVisible() ? "max-h-40 opacity-100 my-1" : "max-h-0 opacity-0 overflow-hidden pointer-events-none border-0 p-0 m-0";
     }
 
     private string SimulateDepth()
